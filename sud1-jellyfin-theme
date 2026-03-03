@@ -4,7 +4,6 @@
    Einfügen: Dashboard → Allgemein → Benutzerdefiniertes CSS
    ═══════════════════════════════════════════════════════════════ */
 
-/* ── 100% Offline: system-ui Fontstack, kein nflxext.com ─────── */
 :root {
   --deftraback: rgba(229, 9, 20, 0.2) !important;
   --rounding: 3px;
@@ -12,13 +11,14 @@
   --font: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
-/* Login h1 */
-#loginPage h1 { font-weight: 700; font-size: 0; margin-bottom: 21.44px; margin-top: 32px !important; text-align: left; }
-#loginPage h1::after { content: "Sign In"; font-size: 32px !important; font-weight: 900 !important; }
-
-/* ═══════════════════════════════════════════════════════════════
-   JellyFlix CSS (prayag17) — extern URLs entfernt
-   ═══════════════════════════════════════════════════════════════ */
+/* ── Jellyfin Logo komplett weg ──────────────────────────────── */
+.headerLogo,
+.headerAppName,
+.skinHeader .headerAppName,
+.imgLogoIcon,
+.adminDrawerLogo,
+.adminDrawerLogo img,
+.pageTitleWithLogo { display: none !important; }
 
 ::-moz-selection { background: var(--accent); text-shadow: none; }
 ::selection { background: var(--accent); text-shadow: none; }
@@ -122,9 +122,10 @@ div#itemDetailPage { background: rgb(20,20,20); }
 .cardText > .textActionButton { width: 100%; height: 100% !important; overflow: hidden; text-overflow: ellipsis; }
 div[data-type="Episode"] .cardText { opacity: 1; }
 
-/* Login Page — kein externer Hintergrund, reines Schwarz */
 .skinHeader.semiTransparent.noHeaderRight { background: transparent !important; }
 div#loginPage { margin-top: 0 !important; overflow: hidden scroll; }
+#loginPage h1 { font-weight: 700; font-size: 0; margin-bottom: 21.44px; margin-top: 32px !important; text-align: left; }
+#loginPage h1::after { content: "Sign In"; font-size: 32px; }
 .inputContainer { margin-bottom: 1.8em; margin-top: 1.8em; }
 #loginPage .padded-left.padded-right.padded-bottom-page { background: #000000bf; transform: translate(-50%, -50%); top: 50%; left: 50%; margin: 0; position: absolute; border-radius: 10px; width: 30vw; height: 70vh; display: flex; flex-direction: column; flex-wrap: nowrap; align-content: center; justify-content: center; align-items: center; padding: 3em !important; max-width: 24em; }
 #loginPage .readOnlyContent { padding: 0 !important; width: 100% !important; height: fit-content; }
@@ -142,22 +143,15 @@ div#loginPage { margin-top: 0 !important; overflow: hidden scroll; }
   .layout-mobile #loginPage .padded-left.padded-right.padded-bottom-page { width: 90vh !important; max-width: 90vh !important; height: fit-content !important; transform: translateX(-50%); top: 0; }
 }
 
-/* Login Hintergrund: offline, reines dunkles Gradient — kein nflxext.com */
-#loginPage {
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a0000 50%, #0a0a0a 100%) !important;
-  background-size: cover !important;
-}
-.layout-mobile #loginPage {
+#loginPage, .layout-mobile #loginPage {
   background: linear-gradient(135deg, #0a0a0a 0%, #1a0000 50%, #0a0a0a 100%) !important;
   background-size: cover !important;
 }
 
-/* Video Page */
 div#videoOsdPage { overflow: hidden !important; margin-top: 0 !important; }
 .mdl-slider-background-lower { background-color: var(--accent) !important; }
 .sliderBubble { background: var(--deftraback) !important; border-radius: 10px; }
 
-/* Scrollbar */
 ::-webkit-scrollbar-thumb { background: #505050 !important; border-radius: 10px !important; }
 .page { padding-bottom: 0 !important; }
 ::-webkit-scrollbar { width: 10px !important; height: 10px !important; }
@@ -165,14 +159,12 @@ div#videoOsdPage { overflow: hidden !important; margin-top: 0 !important; }
 ::-webkit-scrollbar-track-piece { background-color: rgba(0,0,0,0) !important; }
 .button-link { color: white !important; }
 
-/* Fonts: system-ui, kein externer Download */
 body, h1, h2, h3, h4 { font-family: var(--font) !important; }
 .videoSubtitles { font-family: var(--font) !important; font-weight: 700 !important; text-shadow: 0px 0px 8px rgba(0,0,0,1) !important; }
 video::-webkit-media-text-track-display { font-family: var(--font) !important; font-weight: 700 !important; text-shadow: rgba(0,0,0,1) 0em 0em 0.2em !important; }
 video::-webkit-media-text-track-container { font-family: var(--font) !important; font-weight: 700 !important; text-shadow: rgba(0,0,0,1) 0em 0em 0.2em !important; }
 video:cue { font-family: var(--font) !important; font-weight: 700 !important; text-shadow: rgba(0,0,0,1) 0em 0em 0.2em !important; }
 
-/* Rounded corners */
 .formDialogHeader { border-top-left-radius: var(--rounding); border-top-right-radius: var(--rounding); }
 .formDialogFooter { border-bottom-left-radius: var(--rounding); border-bottom-right-radius: var(--rounding); }
 .cardOverlayContainer { border-radius: var(--rounding) !important; }
@@ -288,7 +280,7 @@ div#divRunningTasks { transition: transform 0.2s, background 0.2s; }
 .layout-mobile .detailPageContent { padding: 0 !important; background: rgb(20,20,20); }
 .layout-mobile #itemDetailPage .sectionTitle { padding-left: 5%; }
 .layout-mobile .detailPagePrimaryContent { padding: 0 5% !important; width: calc(100vw - 10%) !important; height: fit-content !important; min-height: fit-content !important; }
-.layout-tv #itemDetailPage:not(.noBackdrop) .detailPagePrimaryContainer, .layout-desktop #itemDetailPage:not(.noBackdrop) .detailPagePrimaryContainer { position: relative; top: 0; width: fit-content !important; background: transparent; font-size: 20px; max-width: 95%; margin-top: 10vh; padding: 0 !important; height: 20vh; font-size: 135%; }
+.layout-tv #itemDetailPage:not(.noBackdrop) .detailPagePrimaryContainer, .layout-desktop #itemDetailPage:not(.noBackdrop) .detailPagePrimaryContainer { position: relative; top: 0; width: fit-content !important; background: transparent; max-width: 95%; margin-top: 10vh; padding: 0 !important; height: 20vh; font-size: 135%; }
 .layout-tv #itemDetailPage:not(.noBackdrop) .detailPagePrimaryContainer { width: 95vw !important; margin-top: 10vh; height: fit-content; }
 .detailImageContainer .card { display: none; }
 .cardOverlayButton-br { margin-right: 2%; }
@@ -352,7 +344,6 @@ body:not(.withSectionTabs) > .skinHeader { background: linear-gradient(to bottom
 .dialogContainer .vertical-wrap { width: 100% !important; }
 .cardFooter .cardText { opacity: 1; }
 
-/* Episode Cards */
 .listItem[data-type="Audio"] .mediaInfoItem::after { display: none !important; }
 .listItem[data-type="Audio"] .listItem-indexnumberleft { padding-left: 5px; }
 #itemDetailPage .vertical-list { display: grid; grid-template-columns: repeat(5, 1fr); padding: 0; height: fit-content; justify-content: space-evenly; margin: -6px; width: 100%; }
@@ -390,7 +381,6 @@ div:not(.paperList) .listItem { display: flex; flex-direction: row; flex-wrap: n
 .layout-tv .listItemImage.listItemImage-large::after { top: 0; bottom: 0; right: 0; left: auto; width: 55px; height: 100%; background: linear-gradient(to left, rgba(0,0,0,0.8) 5%, transparent 95%); }
 .layout-tv .listItem:focus { transform: none !important; background: none !important; }
 
-/* My Media */
 .section0 button.itemAction.textActionButton { height: 3.5em; background: rgba(0,0,0,0); border-radius: var(--rounding); }
 .section0 .overflowBackdropCard, .section0 .overflowSmallBackdropCard { max-width: 90vw; }
 .section0 .emby-scroller { margin-right: 0; }
@@ -398,7 +388,6 @@ div:not(.paperList) .listItem { display: flex; flex-direction: row; flex-wrap: n
 .raised.homeLibraryButton:hover, .raised.homeLibraryButton { transition: filter 1s; }
 .homeLibraryButton { min-width: 12em; margin: 0.4em; }
 
-/* Dashboard */
 .paperList, .visualCardBox { background-color: transparent; }
 .listItemIcon { border-radius: 5px !important; }
 .listItemIcon:not(.listItemIcon-transparent) { background-color: transparent !important; color: var(--accent); }
@@ -417,7 +406,6 @@ div:not(.paperList) .listItem { display: flex; flex-direction: row; flex-wrap: n
 
 .playerStats { background: rgb(20,20,20); box-shadow: 0 0 8px black; }
 
-/* Chapters */
 .chapterCard .innerCardFooter { background: linear-gradient(0deg, black, transparent); width: 100%; bottom: 0; margin: 0 !important; }
 .chapterCard .innerCardFooter > .cardText:first-child { float: left; }
 .chapterCard .innerCardFooter > .cardText:last-child { float: right; }
